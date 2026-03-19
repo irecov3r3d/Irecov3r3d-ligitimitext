@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LiGiTiMiT</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">
+        <span class="logo-icon">▶</span>
+        <h1>LiGiTiMiT</h1>
+      </div>
+      <div class="status-badge" id="status-badge">Ready</div>
+    </header>
+
+    <!-- Recording Controls -->
+    <section class="controls">
+      <div class="record-section" id="record-section">
+        <input type="text" id="macro-name" placeholder="Macro name (optional)" class="macro-input">
+        <button id="start-record" class="btn btn-record">
+          <span class="btn-icon">⏺</span>
+          Start Recording
+        </button>
+      </div>
+      
+      <div class="recording-section hidden" id="recording-section">
+        <div class="recording-indicator">
+          <span class="pulse"></span>
+          <span>Recording: <strong id="recording-name"></strong></span>
+        </div>
+        <button id="stop-record" class="btn btn-stop">
+          <span class="btn-icon">⏹</span>
+          Stop Recording
+        </button>
+      </div>
+      
+      <div class="replay-section hidden" id="replay-section">
+        <div class="replay-indicator">
+          <span class="running-icon">▶</span>
+          <span>Running: <strong id="running-name"></strong></span>
+        </div>
+        <div class="replay-controls">
+          <button id="pause-replay" class="btn btn-pause">
+            <span class="btn-icon">⏸</span>
+            Pause
+          </button>
+          <button id="stop-replay" class="btn btn-stop">
+            <span class="btn-icon">⏹</span>
+            Stop
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tabs -->
+    <nav class="tabs">
+      <button class="tab active" data-tab="macros">Macros</button>
+      <button class="tab" data-tab="logs">Logs</button>
+      <button class="tab" data-tab="settings">Settings</button>
+    </nav>
+
+    <!-- Macros Tab -->
+    <section class="tab-content active" id="macros-tab">
+      <div class="macros-list" id="macros-list">
+        <div class="empty-state">
+          <span class="empty-icon">📋</span>
+          <p>No macros yet</p>
+          <p class="empty-hint">Click "Start Recording" to create your first macro</p>
+        </div>
+      </div>
+      
+      <div class="import-section">
+        <button id="import-btn" class="btn btn-secondary btn-small">
+          <span class="btn-icon">📥</span>
+          Import Macro
+        </button>
+        <input type="file" id="import-file" accept=".json" class="hidden">
+      </div>
+    </section>
+
+    <!-- Logs Tab -->
+    <section class="tab-content" id="logs-tab">
+      <div class="logs-container" id="logs-container">
+        <div class="empty-state">
+          <span class="empty-icon">📝</span>
+          <p>No logs yet</p>
+        </div>
+      </div>
+      <button id="clear-logs" class="btn btn-secondary btn-small">Clear Logs</button>
+    </section>
+
+    <!-- Settings Tab -->
+    <section class="tab-content" id="settings-tab">
+      <div class="settings-group">
+        <label class="setting">
+          <span class="setting-label">Replay Speed</span>
+          <select id="replay-speed" class="setting-input">
+            <option value="0.5">0.5x (Slow)</option>
+            <option value="1" selected>1x (Normal)</option>
+            <option value="1.5">1.5x (Fast)</option>
+            <option value="2">2x (Very Fast)</option>
+          </select>
+        </label>
+        
+        <label class="setting">
+          <span class="setting-label">Element Wait Timeout</span>
+          <select id="wait-timeout" class="setting-input">
+            <option value="5000">5 seconds</option>
+            <option value="10000" selected>10 seconds</option>
+            <option value="20000">20 seconds</option>
+            <option value="30000">30 seconds</option>
+          </select>
+        </label>
+        
+        <label class="setting checkbox">
+          <input type="checkbox" id="highlight-elements" checked>
+          <span class="setting-label">Highlight elements during replay</span>
+        </label>
+      </div>
+      
+      <div class="settings-actions">
+        <button id="export-all" class="btn btn-secondary btn-small">
+          <span class="btn-icon">📤</span>
+          Export All Macros
+        </button>
+        <button id="clear-all" class="btn btn-danger btn-small">
+          <span class="btn-icon">🗑</span>
+          Clear All Data
+        </button>
+      </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal hidden" id="modal">
+      <div class="modal-backdrop"></div>
+      <div class="modal-content">
+        <h3 id="modal-title">Modal</h3>
+        <div id="modal-body"></div>
+        <div class="modal-actions">
+          <button id="modal-cancel" class="btn btn-secondary">Cancel</button>
+          <button id="modal-confirm" class="btn btn-primary">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
